@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+    <title>Frontend Mentor | Mortgage repayment calculator</title>
+
+    <!-- CSS -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="./bootstrap-5.0.2/css/bootstrap.min.css">
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- JS -->
+    <!-- Bootstrap Bundle -->
+    <script src="./bootstrap-5.0.2/js/bootstrap.bundle.min.js" defer></script>
+    <!-- Scripts propios -->
+    <script src="./js/main.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Contenedor que reemplaza al body -->
+    <div class="container-fluid d-flex flex-column justify-content-md-center align-items-center p-0 contenedor-de-todo">
+
+        <!-- Inicio de contenedor principal o área de trabajo -->
+        <div class="container-md contenedor-principal">
+            <div class="row">
+                <!-- Inicio de columna del formulario -->
+                <div class="col-md-6 pt-4 pb-5 px-3 px-md-4 columna-del-formulario">
+                    <!-- Inicio de encabezado -->
+                    <div class="row flex-column flex-md-row justify-content-md-between align-items-md-center"
+                        id="encabezado">
+                        <div class="col-md-9">
+                            <h1 class="fs-5 m-0" id="titulo">Mortgage Calculator</h1>
+                        </div>
+
+                        <div class="col-md-3">
+                            <button type="button" id="boton_de_limpiar" class="btn h-auto border-0 text-decoration-underline bg-transparent p-0">Clear All</button>
+                        </div>
+                    </div>
+                    <!-- Fin de encabezado -->
+
+                    <!-- Inicio de formulario -->
+                    <form action="" id="formulario" class=".formulario mt-3 mt-md-4" novalidate>
+                        <label for="montgage_amount" class="form-label fs-6 fw-light">Montgage Amount</label>
+                        <div class="input-group mb-3" id="contenedor_montgage_amount">
+                            <span class="input-group-text border-0">
+                                <i class="bi bi-currency-pound"></i>
+                            </span>
+                            <input type="text" id="montgage_amount" class="form-control border-0 fw-bold"
+                                aria-label="Monto (no importa la moneda)" required>
+                        </div>
+
+                        <p class="error error-montgage-amount d-none">This field is required</p>
+
+                        <!-- Inicio de años de hipoteca y tasa de interés -->
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <label for="montgage_term" class="form-label fs-6 fw-light">Montgage Term</label>
+                                <div class="input-group mb-3" id="contenedor_montgage_term">
+                                    <input type="text" id="montgage_term" class="form-control fw-bold border-0"
+                                        aria-label="Monto (no importa la moneda)" required>
+                                    <span class="input-group-text border-0">years</span>
+                                </div>
+                                <p class="error error-montgage-term d-none">This field is required</p>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <label for="interest_rate" class="form-label fs-6 fw-light">Interest Rate</label>
+                                <div class="input-group mb-3" id="contenedor_interest_rate">
+                                    <input type="text" id="interest_rate" class="form-control fw-bold border-0"
+                                        aria-label="Monto (no importa la moneda)">
+                                    <span class="input-group-text border-0">%</span>
+                                </div>
+
+                                <p class="error error-interest-rate d-none">This field is required</p>
+                            </div>
+                        </div>
+                        <!-- Fin de años de hipoteca y tasas de interés -->
+
+                        <!-- Inicio de los radio buttons -->
+                        <fieldset class="radio-inputs-fieldset">
+                            <legend class="fs-6 fw-light">Montgage Type</legend>
+
+                            <label class="input-radio-personalizado border border-2 py-2 mt-2 d-flex align-items-center"
+                                for="radio_repayment">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="radio_repayment">
+                                <span class="circulo-de-check ms-3"></span>
+                                <span class="form-check-label fw-bold ps-2">Repayment</span>
+                            </label>
+
+                            <label class="input-radio-personalizado border border-2 py-2 mt-2 d-flex align-items-center"
+                                for="radio_interest_only">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                    id="radio_interest_only">
+                                <span class="circulo-de-check ms-3"></span>
+                                <span class="form-check-label fw-bold ps-2">Interest Only</span>
+                            </label>
+                        </fieldset>
+                        <!-- Fin de los radio buttons -->
+
+                        <p class="error error-radio-inputs d-none">This field is required</p>
+
+                        <!-- Botón -->
+                        <button type="submit" id="boton_calcular" class="btn fw-bold w-100 d-flex justify-content-center align-items-center mt-4">
+                            <!-- <i class="bi bi-calculator-fill"></i> -->
+                            <img class="icono-boton" src="./assets/images/icon-calculator.svg" alt="Calculadora">
+                            <span class="ms-2">Calculate Repayments</span>
+                        </button>
+                    </form>
+                    <!-- Fin de formulario -->
+                </div>
+                <!-- Fin de la columna del formulario -->
+
+                <!-- Inicio de columna de resultados (vacío) -->
+                <div
+                    class="col-md-6 d-flex justify-content-center align-items-center text-center columna-de-resultados vacia" id="columna_resultados_presentacion">
+                    <div class="p-5 px-md-3">
+                        <img src="./assets/images/illustration-empty.svg" alt="Imagen de una calculadora financiera">
+                        <p class="fs-3 text-white">Results shown here</p>
+                        <p class="texto-columna-resultados">Complete the form and click "calculate repayments" to see
+                            what your monthly repayments would be.</p>
+                    </div>
+                </div>
+                <!-- Fin de columna de resultados (vacío) -->
+
+                <!-- Inicio de columna de resultados (lleno) -->
+                <div class="col-md-6 d-none columna-de-resultados llena" id="columna_resultados_completa">
+                    <div class="px-2 px-md-3 pt-3">
+                        <p class="fs-4 text-white">Your results</p>
+                        <p class="texto-columna-resultados">Your results are shown below based on the information
+                            you provided. To adjust the results, edit the form and click “calculate repayments”
+                            again.
+                        </p>
+
+                        <!-- Caja de resultados -->
+                        <div class="caja-de-resultados p-3 mb-4">
+                            <p class="texto-columna-resultados texto-resultado m-0">Your monthly repayments</p>
+                            <p class="resultado" id="resultado_pago_mensual">
+                                <span>£</span>0
+                            </p>
+
+                            <hr>
+
+                            <p class="texto-columna-resultados m-0">Total you'll repay over the term</p>
+                            <p class="total-repay text-white" id="resultado_pago_total">
+                                <span>£</span>539,322.94
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin de columna de resultados (lleno) -->
+            </div>
+
+        </div>
+        <!-- Fin de contenedor principal o área de trabajo -->
+
+        <div class="attribution">
+            Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+            Coded by <a href="#">Ronnie Santoyo</a>.
+        </div>
+    </div>
+    <!-- Fin del contenedor que reemplaza al body -->
+
+</body>
+
+</html>
